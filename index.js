@@ -40,8 +40,8 @@ app.get('/', (req, res) => {
 });
 
 
-// const image = `\\opt\\render\\project\\src\\`
-const image = `C:\\Users\\Aliyu\\postgresqltesting\\`
+const image = `\\opt\\render\\project\\src\\`
+// const image = `C:\\Users\\Aliyu\\postgresqltesting\\`
 console.log(_dirname);
 
 // Route to handle file upload
