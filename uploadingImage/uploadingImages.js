@@ -116,11 +116,12 @@ export async function uploadToInstagram(imagePath) {
     await driver.findElement(By.name('password')).sendKeys(password, Key.RETURN);
 
     // Wait for the login process to complete
-    await driver.wait(until.urlContains('https://www.instagram.com/accounts/onetap/?next=%2F'), 20000);
+    // await driver.wait(until.urlContains('https://www.instagram.com/accounts/onetap/?next=%2F'), 20000);
+    await driver.wait(until.elementLocated(By.css('svg[aria-label="New post"]')), 20000).click();
 
     console.log('click new post');
     // Click on the "New Post" button
-    await driver.findElement(By.css('svg[aria-label="New post"]')).click();
+    // await driver.findElement(By.css('svg[aria-label="New post"]')).click();
 
     console.log('posting');
     // Wait for the file input to be available and upload the image
