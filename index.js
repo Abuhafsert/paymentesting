@@ -5,7 +5,7 @@ import path from 'path';
 
 
 import { fileURLToPath } from 'url';
-import { run } from './uploadingImage/uploadingImages.js';
+import { uploadToInstagram } from './uploadingImage/uploadingImages.js';
 
 
 // Resolve the __dirname equivalent in ES module
@@ -47,7 +47,7 @@ console.log(_dirname);
 app.post('/upload', upload.single('file'), async (req, res) => {
   console.log(req.file);
     if (req.file) {
-     await run(`${image}${req.file.path}`)
+     await uploadToInstagram(`${image}${req.file.path}`)
         res.json({ message: 'File uploaded successfully', file: req.file });
     } else {
         res.status(400).json({ message: 'File upload failed' });
