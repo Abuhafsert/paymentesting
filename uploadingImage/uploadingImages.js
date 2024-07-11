@@ -18,7 +18,7 @@ export async function run(image) {
             height: 570,
         },
         args: ['--no-sandbox', '--lang=en'],
-        headless: false,
+        headless: 'new',
         // isMobile: true
     };
     const browser = await puppeteer.launch(options);
@@ -32,7 +32,7 @@ export async function run(image) {
 
 
 
-        await page.type('input[name="username"]', 'reylqr21', {delay: 30});
+        await page.type('input[name="username"]', 'reylqr27', {delay: 30});
 
         await page.type('input[name="password"]', 'vaqasa', {delay: 30});
 
@@ -57,10 +57,10 @@ export async function run(image) {
 
         // await fs.writeFile('./thrift/context', contaext)
 
-        // await browser.close();
+        await browser.close();
       } 
       catch (error) {
-        // await browser.close();
+        await browser.close();
     }
     
 }
