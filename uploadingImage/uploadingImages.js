@@ -25,6 +25,8 @@ export async function run(image) {
     try {
         const page = await browser.newPage();
 
+        console.log('searching for instagram');
+
         await page.goto(INSTAGRAM_LOGIN_URL);
         await page.waitForNetworkIdle();
 
@@ -38,6 +40,7 @@ export async function run(image) {
 
         await btn.click();
 
+        console.log('navigating to next page');
         await page.waitForNavigation();
 
 

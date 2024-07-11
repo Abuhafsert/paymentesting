@@ -5,7 +5,7 @@ import path from 'path';
 
 
 import { fileURLToPath } from 'url';
-import { run } from './uploadingImage/uploadingImages';
+import { run } from './uploadingImage/uploadingImages.js';
 
 
 // Resolve the __dirname equivalent in ES module
