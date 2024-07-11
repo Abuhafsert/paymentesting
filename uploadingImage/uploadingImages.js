@@ -92,7 +92,7 @@ const caption = 'Your caption here';
 export async function uploadToInstagram(imagePath) {
   // Set up Chrome options
   let options = new chrome.Options();
-  options.addArguments('--headless'); // Run in headless mode
+  // options.addArguments('--headless'); // Run in headless mode
   options.addArguments('--disable-notifications');
   
   options.addArguments('--disable-gpu'); // Disable GPU acceleration (necessary for some environments)
