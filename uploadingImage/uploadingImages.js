@@ -118,9 +118,11 @@ export async function uploadToInstagram(imagePath) {
     // Wait for the login process to complete
     await driver.wait(until.urlContains('https://www.instagram.com/accounts/onetap/?next=%2F'), 20000);
 
+    console.log('click new post');
     // Click on the "New Post" button
     await driver.findElement(By.css('svg[aria-label="New post"]')).click();
 
+    console.log('posting');
     // Wait for the file input to be available and upload the image
     let fileInput = await driver.wait(until.elementLocated(By.css('input[type="file"]')), 10000);
     await fileInput.sendKeys(imagePath);
@@ -141,6 +143,8 @@ export async function uploadToInstagram(imagePath) {
     await driver.wait(until.elementLocated(By.xpath('//div[text()="Share"]')), 10000).click();
 
     console.log('Image uploaded successfully!');
+    await new Promise(resolve => setTimeout(resolve, 10000));
+
   } catch (error) {
     console.error('Error uploading image:');
   } finally {
