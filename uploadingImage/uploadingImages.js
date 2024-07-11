@@ -18,7 +18,7 @@ export async function uploadToInstagram(image) {
             height: 570,
         },
         args: ['--no-sandbox', '--lang=en'],
-        headless: false,
+        headless: 'new',
         // isMobile: true
     };
     const browser = await puppeteer.launch(options, {
