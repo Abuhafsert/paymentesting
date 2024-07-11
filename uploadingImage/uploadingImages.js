@@ -73,7 +73,7 @@
 import { Builder, By, Key, until } from 'selenium-webdriver';
 import chrome from 'selenium-webdriver/chrome.js';
 import 'chromedriver';
-import path from 'path';
+import path, { resolve } from 'path';
 import { Module } from 'module';
 
 
@@ -92,7 +92,7 @@ const caption = 'Your caption here';
 export async function uploadToInstagram(imagePath) {
   // Set up Chrome options
   let options = new chrome.Options();
-  options.addArguments('--headless'); // Run in headless mode
+  // options.addArguments('--headless'); // Run in headless mode
   options.addArguments('--disable-notifications');
   
   options.addArguments('--disable-gpu'); // Disable GPU acceleration (necessary for some environments)
@@ -127,15 +127,18 @@ export async function uploadToInstagram(imagePath) {
 
     console.log('upload success going to next');
 
+    // await new Promise(resolve => setTimeout(resolve, 10000000))
     // Click the "Next" button
-    await driver.wait(until.elementLocated(By.xpath('//button[text()="Next"]')), 10000).click();
+    await driver.wait(until.elementLocated(By.xpath('//div[text()="Next"]')), 10000).click();
+
+    await driver.wait(until.elementLocated(By.xpath('//div[text()="Next"]')), 10000).click();
 
     // Add a caption to the post
-    let captionField = await driver.wait(until.elementLocated(By.css('textarea[aria-label="Write a caption…"]')), 10000);
-    await captionField.sendKeys(caption);
+    // let captionField = await driver.wait(until.elementLocated(By.css('textarea[aria-label="Write a caption…"]')), 10000);
+    // await captionField.sendKeys(caption);
 
     // Click the "Share" button
-    await driver.wait(until.elementLocated(By.xpath('//button[text()="Share"]')), 10000).click();
+    await driver.wait(until.elementLocated(By.xpath('//div[text()="Share"]')), 10000).click();
 
     console.log('Image uploaded successfully!');
   } catch (error) {
