@@ -125,6 +125,8 @@ export async function uploadToInstagram(imagePath) {
     let fileInput = await driver.wait(until.elementLocated(By.css('input[type="file"]')), 10000);
     await fileInput.sendKeys(imagePath);
 
+    console.log('upload success going to next');
+
     // Click the "Next" button
     await driver.wait(until.elementLocated(By.xpath('//button[text()="Next"]')), 10000).click();
 
