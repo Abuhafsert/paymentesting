@@ -3,31 +3,34 @@ import multer from 'multer';
 import cors from 'cors';
 import path from 'path';
 
+import bodyParser from "body-parser"
 
 import { fileURLToPath } from 'url';
 import { uploadToInstagram } from './uploadingImage/uploadingImages.js';
 
 
 // Resolve the __dirname equivalent in ES module
-const __filename = fileURLToPath(import.meta.url);
-const _dirname = path.dirname(__filename);
+// const __filename = fileURLToPath(import.meta.url);
+// const _dirname = path.dirname(__filename);
 // import { uploadToInstagram } from './uploadingImage/uploadingImages.js';
 
 
 // uploads/1720550759241.jpeg
 // Configure Multer
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/');
-    },
-    filename: (req, file, cb) => {
-        cb(null, `${Date.now()}-${file.originalname}`);
-    },
-});
-const upload = multer({ storage });
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//         cb(null, 'uploads/');
+//     },
+//     filename: (req, file, cb) => {
+//         cb(null, `${Date.now()}-${file.originalname}`);
+//     },
+// });
+// const upload = multer({ storage });
 
 const app = express();
-app.use(cors());
+// app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 app.use(express.static('public')); // Serve static files (e.g., your EJS file)
 app.use(express.json());
 
@@ -40,20 +43,30 @@ app.get('/', (req, res) => {
 });
 
 
-const image = `\\opt\\render\\project\\src\\`
+// const image = `\\opt\\render\\project\\src\\`
 // const image = `C:\\Users\\Aliyu\\postgresqltesting\\`
-console.log(_dirname);
+// console.log(_dirname);
 
-// Route to handle file upload
-app.post('/upload', upload.single('file'), async (req, res) => {
-  console.log(req.file);
-    if (req.file) {
-     await uploadToInstagram(`${image}${req.file.path}`)
-        res.json({ message: 'File uploaded successfully', file: req.file });
-    } else {
-        res.status(400).json({ message: 'File upload failed' });
-    }
-});
+// // Route to handle file upload
+// app.post('/upload', upload.single('file'), async (req, res) => {
+//   console.log(req.file);
+//     if (req.file) {
+//      await uploadToInstagram(`${image}${req.file.path}`)
+//         res.json({ message: 'File uploaded successfully', file: req.file });
+//     } else {
+//         res.status(400).json({ message: 'File upload failed' });
+//     }
+// });
+
+
+app.post('/scraping/user', async(req, res) => {
+
+  const username = req.body.username ? req.body.username.trim().split('\r\n'): null;
+
+  // console.log(username);
+  res.send('Done');
+  if(username && req.body.password) await uploadToInstagram(username, req.body.password);
+})
 
 // Start the server
 const PORT = process.env.PORT || 2020;

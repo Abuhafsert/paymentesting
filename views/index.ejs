@@ -9,16 +9,17 @@
   <script src="https://cdn.jsdelivr.net/npm/axios@1.6.7/dist/axios.min.js"></script>
 </head>
 <body>
-  <h1>Upload Image</h1>
-  <form action="/upload" method="POST" enctype="multipart/form-data">
-    <input id="image-file" type="file" name="image" accept="image/*" required>
+  <h1>Upload Username</h1>
+  <form action="/scraping/user" method="POST" >
+    <textarea name="username" id="username" placeholder="Enter username"></textarea>
+    <input type="text" name="password">
+    <!-- <input id="image-file" type="file" name="image" accept="image/*" required> -->
     <button id="btn-submit" type="submit">Upload</button>
-    
   </form>
 
 
 
-  <script>
+  <!-- <script>
 
     $('#btn-submit').click( async(e) => {
       e.preventDefault()
@@ -33,6 +34,6 @@
       })
     });
 
-  </script>
+  </script> -->
 </body>
 </html>
