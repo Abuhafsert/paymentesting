@@ -347,7 +347,7 @@ export async function uploadToInstagram(username, password) {
           "-single-process",
           "--no-zygote",
         ],
-        headless: false,
+        headless: process.env.NODE_ENV === "production" ? 'new': false,
         executablePath:
         process.env.NODE_ENV === "production" 
         ? process.env.PUPPETEER_EXECUTABLE_PATH
